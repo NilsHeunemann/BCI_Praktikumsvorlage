@@ -1,0 +1,123 @@
+\input{../header.tex}
+\addbibresource{Beispiel/beispiel_lit.bib}
+
+\begin{document}
+
+\tableofcontents
+
+\newpage
+
+\section{Gestaltungsrichtlinien}
+
+In diesem Dokument sollen die Gestaltungsrichtlinien aus \textcquote{wie_protokoll}{Wie schreibe ich ein Protokoll?} umgesetzt werden.
+
+\subsection{Layout}
+
+\begin{itemize}
+	\item Schriftart: Times New Roman (Liberation Serif) oder Arial (Liberation Sans)
+	\item Schriftgröße: 12pt. (Times New Roman), 11pt. (Arial)
+	\item Zeilenabstand: 1,5-fach (hier tatsächlich richtig umgesetzt)
+	\item Blocksatzt (standard)
+	\item Einheiten im Text nicht von der Zahl trennen und mit richtigen Abständen mit dem Package \texttt{SIUnitx}
+
+	\begin{itemize}
+		\item Wert:\begin{verbatim}
+			\qty{2}{\kilo\joule\per\kilo\gram\kelvin}
+		\end{verbatim} 
+		ergibt: \qty{2}{\kilo\joule\per\kilo\gram\kelvin} 	
+		\item Einheiten: \begin{verbatim}
+			\unit{\kilo\gram\per\cubic\metre}
+		\end{verbatim}
+		ergibt: \unit{\kilo\gram\per\cubic\metre}
+	\end{itemize}
+	
+\end{itemize}
+
+\subsection{Abbildungen}
+
+Abbildungen immer mit Unterschriften versehen, wie in Abbildung \ref{fig:example_a} dargestellt ist. 
+Bei Achsenbeschriftungen darauf achten, dass die Einheiten mit \(\mathbin{/}\) \textquote{weg dividiert werden}.
+Mehr dazu in dem Abschnitt \ref{sec:typ} 
+
+% Diagramm
+\begin{figure}[h] 
+    \centering
+    \scalebox{.7}{\includegraphics{example-image-a}} % Größe anpassen
+    \caption{Das Bild zeigt ein Beispielbild. Anstelle dieses Bildes könnte hier aber auch ein Diagramm oder eine andere Grafik sein.}
+    \label{fig:example_a} % Nummer anpassen
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Tabellen}
+Tabellen bekommen nur Überschriften wie in Tabelle \ref{tab:use} zu sehen ist.
+
+\begin{table}[h]
+	\centering
+	\caption{Wichtige Überschrift}
+	\begin{tabular}{c|c c}
+		Wert & Wert & Wert \\
+		\hline
+		\num{12} &  \num{12,17}& \num{12,345} \\
+		\hline		
+	\end{tabular}
+	\label{tab:use}	
+\end{table}
+
+Das Package \texttt{SIUnitx} \cite{SIUnitx} erlaubt es schöntere Tablellen mit Werten zu erstellen. Die Tablelle \ref{tab:si} ist ein Beispiel dafür.
+
+\begin{table}[h]
+	\centering
+	\caption{Tabelle mit \texttt{SIUnitx}}
+	\sisetup{table-format=2.1} %Stellen vor & nach dem Komma
+	\begin{tabular}{S S}
+		\toprule
+		{$k_0 \mathbin{/} \unit{\litre\per\mole\per\second}$} & {$E_A \mathbin{/} \unit{\kilo\joule\per\mole}$} \\
+		\midrule
+		\num{1,81 e7} & \num{48,3} \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:si}	
+\end{table}
+
+\subsection{Chemische Reaktionen}
+
+Chemische Formeln oder Elemente werden aufrecht geschrieben wie beispielsweise \ce{Br2}.
+Reaktionen werden mit Römischen Zahlen nummeriert wie Reaktion \eqref{re:ex}.
+
+% nummerierte Chemische Reaktion
+\begin{reaction} \label{re:ex}
+	\ce{Br2 ->[h_\nu] 2Br.} % Hier die Reaktion anpassen
+\end{reaction}
+
+	
+\section{Typographie}\label{sec:typ}
+Die Hinweise hier sind nach meinem besten Wissen verfasst, über Korrekturen freue ich mich immer.
+
+Variablen werden sowohl im Text als auch in Formeln kursiv gesetzt werden.
+Das macht \LaTeX{} glücklicherweise von alleine, wenn man dazu die richtigen Umgebungen nutzt.
+Einheiten werden als mathematische Zeichen betrachtet und können daher nach den Regeln der Algebra behandelt werden.
+Daher werden die einheitsbehafteten Größen bei Tabellen und Diagrammen auch durch die entsprechende Einheit geteilt \cite{si_brochure}.
+Es ist also möglich \(p = \qty{48}{\kilo\pascal}\) auch als \(p\mathbin{/}\unit{\kilo\pascal} = 48 \) zu schreiben.	
+Die Gleichung \eqref{eq:dampf} zeigt ein anschaulicheres Beispiel.
+
+\begin{equation}\label{eq:dampf}
+	p \mathbin{/} \unit{\kilo\pascal} = A - \frac{B}{T \mathbin{/} \unit{\kelvin} + C}
+\end{equation}
+
+Des weiteren sollte darauf geachtet werden, dass mathematische Operatoren und Konstanten nicht kursiv zu setzen sind \cite{green_book}. 
+Physikalische Konstanten jedoch sind kursiv zu setzen Beispiele sind die Gleichung \eqref{eq:int1} und \eqref{eq:int2}.
+Dabei fällt besonders bei dem Dell, dem Delta so wie bei dem d des Integrals auf, dass diese alle aufrecht gesetzt sind.
+
+\begin{align}
+	\pdv[order={1}]{\ln K}{T} &= \frac{\symup{\Delta}H_r}{RT^2} \label{eq:int1} \\
+	\Leftrightarrow K(T) &= \int_{T_0}^T \frac{\symup{\Delta}H_\text{r}}{RT^2} \odif{T} \label{eq:int2} \\
+	\intertext{Indizes sind auch aufrecht zu setzen wie in Gleichung \eqref{eq:indx}}
+	\Dot{m} _{\text{akk.}} &= \Dot{m}_{\text{ein}} - \Dot{m} _{\text{aus}} \label{eq:indx}   
+\end{align}
+
+
+\newpage
+
+\printbibliography
+\end{document}

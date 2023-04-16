@@ -1,0 +1,86 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+
+% Deutsche Spracheinstellungen; im zweifelsfall ändern
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+
+\usepackage{unicode-math}
+
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\setmainfont{Liberation Serif} % Times New Roman -> 12pt
+%\setmainfont{Liberation Sans} % Arial -> 11pt
+ 
+% Quellen
+\usepackage[sorting=none]{biblatex}
+\addbibresource{lit.bib}
+
+% Römische Nummerierung für Abschnitte
+%\renewcommand{\thesection}{\Roman{section}} 
+%\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+
+
+% 1,5-fachen Zeilenabstand festlegen
+\usepackage[onehalfspacing]{setspace}
+
+% Seitenränder einstellen
+\usepackage[left=2.5cm, right=2.5cm, top=2cm, bottom=2.5cm]{geometry}
+
+% richtige Anführungszeichen
+\usepackage[autostyle]{csquotes}
+
+% Klick bare Links im Dokument
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={},
+}
+    
+% Keine Einrückung, der Befehl \indent funktioniert aber trotzdem
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+% Grafikfähigkeit
+\usepackage{graphics}
+\usepackage{wrapfig}
+
+% Für schönere Einheiten
+\usepackage{siunitx}
+
+% Noch ein wenig Chemie
+\usepackage[version=4]{mhchem}
+
+% Definieren des reaction Environments für nummerierte Reaktionen
+\newcounter{reaction}
+\newcounter{tmp}
+\newenvironment{reaction}{%
+\setcounter{tmp}{\value{equation}}%
+\setcounter{equation}{\value{reaction}}%
+\renewcommand{\theequation}{\Roman{equation}}%
+\begin{equation}%
+}{%
+\end{equation}%
+\setcounter{reaction}{\value{equation}}%
+\setcounter{equation}{\value{tmp}}%
+}
+
+\usepackage{pdflscape}
+\usepackage[format=hang]{caption}
+
+\usepackage[upright=true]{derivative}
+\RenewDerivative\pdv{\symup{\partial}}[delims-eval={. \rver}]
+
+\usepackage[section]{placeins}
+
+\usepackage{booktabs}
+
+\usepackage{tocloft}
+\addtolength{\cftsubsecnumwidth}{10pt}
