@@ -20,7 +20,7 @@ Die aus der Datei entstehende .pdf ist auch unter Releases zu finden.
 
 ## Installation
 
-## Overleaf
+### Overleaf
 Um die Vorlage bei Overleaf zu benutzen sind ein paar Schritte nötig
 1. .zip Datei bei GitHub herunterladen 
 2. Auf der Overleaf Projektseite > New Project > Upload Project .zip Datei hochladen
@@ -36,7 +36,7 @@ Um die Vorlage bei Overleaf zu benutzen sind ein paar Schritte nötig
 BEISPIEL:
 Um das Beispiel zu kompilieren das Menü öffnen und als Main Document `Beispiel/Beispiel.tex` auswählen und dann nochmal kompilieren. 
 
-## TeX Live 
+### TeX Live 
 Es ist ein Makefile enthalten, der `latexmk` aufruft um die Datei zu Kompilieren. 
 Der Output wird dabei in den neu erstellten build Ordner geschrieben. 
 
